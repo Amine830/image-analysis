@@ -1,3 +1,25 @@
+# Fichiers et répertoires générés par CMake
+/build/
+/CMakeFiles/
+/CMakeCache.txt
+/cmake_install.cmake
+/Makefile
+
+# Fichiers de configuration de l'éditeur
+/.vscode/
+/.idea/
+/*.swp
+
+# Fichiers de log
+*.log
+
+# Fichiers temporaires
+*.tmp
+*.bak
+*.old
+*.orig
+
+
 # Prerequisites
 *.d
 
