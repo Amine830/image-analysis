@@ -52,16 +52,6 @@ cv::Mat applyGaussianBlur(const cv::Mat &src, int kernelSize, double sigma)
 
     }
 
-    // printf("Kernel:\n");
-    for (int y = 0; y < kernelSize; ++y)
-    {
-        for (int x = 0; x < kernelSize; ++x)
-        {
-            printf("%f ", kernel[y][x]);
-        }
-        printf("\n");
-    }
-
     for (int y = border; y < src.rows - border; ++y)
     {
         for (int x = border; x < src.cols - border; ++x)
