@@ -37,7 +37,6 @@ int main() {
     cv::Mat zoomed = processor.zoom(image, 1.5);       // Zoom 1.5x
     cv::Mat reduced = processor.reduce(image, 0.5);   // Réduction 0.5x
     cv::Mat rotated = processor.rotate(image, 45);    // Rotation 45 degrés
-    cv::Mat translated = processor.translate(image, 50, 50); // Translation (50, 50)
     cv::Mat flipped = processor.flip(image, 1);       // Flip horizontal
     cv::Mat compressed = processor.compress(image);   // Compression
 
@@ -45,7 +44,6 @@ int main() {
     cv::imshow("Zoomed Image", zoomed);
     cv::imshow("Reduced Image", reduced);
     cv::imshow("Rotated Image", rotated);
-    cv::imshow("Translated Image", translated);
     cv::imshow("Flipped Image", flipped);
     cv::imshow("Compressed Image", compressed);
     
@@ -59,7 +57,7 @@ int main() {
     // cv::imshow("Cumulated Histogram", cumulatedHist);
 
     // // Égalisation d'histogramme
-    // cv::Mat equalizedImage = processor.equalizeHistogramColorFromScratch(image);
+    // cv::Mat equalizedImage = processor.equalizeHistogram(image);
     // cv::imshow("Equalized Image", equalizedImage);
 
     // //afficher l'histogramme de l'image après égalisation

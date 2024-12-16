@@ -3,13 +3,13 @@
 
 using namespace std;
 
-// Ajouter un filtre au gestionnaire de filtres
+// Fonction pour ajouter un filtre au gestionnaire de filtres
 void ImageProcessor::addFilter(const std::string &name, FilterFunction filter)
 {
     filters[name] = filter;
 }
 
-// Appliquer un filtre par nom
+// Fonctoion pour ppliquer un filtre par nom
 cv::Mat ImageProcessor::applyFilter(const std::string &name, const cv::Mat &src)
 {
     if (filters.find(name) != filters.end())
@@ -22,6 +22,10 @@ cv::Mat ImageProcessor::applyFilter(const std::string &name, const cv::Mat &src)
         return src.clone();
     }
 }
+
+/****************************************************************************************
+ *                               TRAITEMENTS & HISTOGRAMMES                             *
+ ****************************************************************************************/
 
 // Calculer un histogramme de couleurs
 cv::Mat ImageProcessor::calculateHistogram(const cv::Mat &src)
@@ -49,6 +53,7 @@ cv::Mat ImageProcessor::calculateHistogram(const cv::Mat &src)
     return histImage;
 }
 
+// Calculer un histogramme cumulé
 cv::Mat ImageProcessor::calculateCumulatedHistogram(const cv::Mat &src)
 {
     std::vector<int> histogram(256, 0);
@@ -76,8 +81,8 @@ cv::Mat ImageProcessor::calculateCumulatedHistogram(const cv::Mat &src)
     return histImage;
 }
 
-cv::Mat ImageProcessor::equalizeHistogramColorFromScratch(const cv::Mat &src)
-{
+// Égalisation d'histogramme
+cv::Mat ImageProcessor::equalizeHistogram(const cv::Mat &src){
 
     CV_Assert(src.type() == CV_8UC3); // Vérification : image en couleur
 
@@ -144,8 +149,8 @@ cv::Mat ImageProcessor::equalizeHistogramColorFromScratch(const cv::Mat &src)
     return equalizedImage;
 }
 
-cv::Mat ImageProcessor::stretchHistogram(const cv::Mat &src)
-{
+// Étirement d'histogramme
+cv::Mat ImageProcessor::stretchHistogram(const cv::Mat &src) {
 
     CV_Assert(src.type() == CV_8UC3); // Ensure the image is a color image (BGR)
 
@@ -180,7 +185,11 @@ cv::Mat ImageProcessor::stretchHistogram(const cv::Mat &src)
     return stretchedImage;
 }
 
-// Zoom (agrandissement) sans utiliser les fonctions OpenCV
+/****************************************************************************************
+ *                  OPERATIONS DE TRANSFORMATION GÉOMÉTRIQUE D'IMAGES                   *
+ ****************************************************************************************/
+
+// Zoom (agrandissement) 
 cv::Mat ImageProcessor::zoom(const cv::Mat &src, double scaleFactor)
 {
     int newRows = src.rows;
@@ -196,11 +205,13 @@ cv::Mat ImageProcessor::zoom(const cv::Mat &src, double scaleFactor)
 
             if (srcY >= 0 && srcY < src.rows && srcX >= 0 && srcX < src.cols)
             {
+                // Remplir avec les valeurs de l'image source si dans les limites
                 dst.at<cv::Vec3b>(y, x) = src.at<cv::Vec3b>(srcY, srcX);
             }
             else
             {
-                dst.at<cv::Vec3b>(y, x) = cv::Vec3b(0, 0, 0); // Fill with black if out of bounds
+                // Remplir avec du noir si hors limites
+                dst.at<cv::Vec3b>(y, x) = cv::Vec3b(0, 0, 0); 
             }
         }
     }
@@ -208,29 +219,31 @@ cv::Mat ImageProcessor::zoom(const cv::Mat &src, double scaleFactor)
     return dst;
 }
 
-// Réduction (compression simple)
+// Réduction 
 cv::Mat ImageProcessor::reduce(const cv::Mat &src, double scaleFactor)
 {
+    // Vérifier que le facteur de réduction est valide
     if (scaleFactor <= 0 || scaleFactor >= 1)
     {
-        std::cerr << "Scale factor for reduction must be in range (0, 1)." << std::endl;
+        std::cerr << "Scale factor doit être compris entre 0 et 1" << std::endl;
         return src;
     }
     return zoom(src, scaleFactor);
 }
 
+// Compression 
 cv::Mat ImageProcessor::compress(const cv::Mat &src){
 
-    CV_Assert(src.type() == CV_8UC3); // Ensure the image is a color image (BGR)
+    CV_Assert(src.type() == CV_8UC3); // Vérification : image en couleur
 
-    // Split the image into its three channels (Blue, Green, Red)
+    // Diviser l'image en ses trois canaux (Bleu, Vert, Rouge)
     std::vector<cv::Mat> channels(3);
     cv::split(src, channels);
 
-    // Process each channel independently
+    // Processus de chaque canal indépendamment
     for (int i = 0; i < 3; ++i)
     {
-        // Find the minimum and maximum pixel values in the current channel
+        // Trouver les valeurs minimale et maximale des pixels dans le canal actuel
         double minVal = 255, maxVal = 0;
         for (int y = 0; y < channels[i].rows; ++y)
         {
@@ -242,7 +255,7 @@ cv::Mat ImageProcessor::compress(const cv::Mat &src){
             }
         }
 
-        // Apply the histogram stretching on the current channel
+        // Appliquer la compression d'histogramme sur le canal actuel
         for (int y = 0; y < channels[i].rows; ++y)
         {
             for (int x = 0; x < channels[i].cols; ++x)
@@ -254,20 +267,20 @@ cv::Mat ImageProcessor::compress(const cv::Mat &src){
         }
     }
 
-    // Merge the channels back to a single image
+    // Fusionner les canaux en une seule image
     cv::Mat compressedImage;
     cv::merge(channels, compressedImage);
 
     return compressedImage;
 }
 
-// Rotation without using OpenCV functions
-cv::Mat ImageProcessor::rotate(const cv::Mat &src, double angle)
-{
+// Rotation
+cv::Mat ImageProcessor::rotate(const cv::Mat &src, double angle){
     int rows = src.rows;
     int cols = src.cols;
     cv::Mat dst(rows, cols, src.type());
 
+    // convertir l'angle en radians
     double radians = angle * CV_PI / 180.0;
     double cosA = cos(radians);
     double sinA = sin(radians);
@@ -275,6 +288,7 @@ cv::Mat ImageProcessor::rotate(const cv::Mat &src, double angle)
     int centerX = cols / 2;
     int centerY = rows / 2;
 
+    // Appliquer la rotation
     for (int y = 0; y < rows; ++y)
     {
         for (int x = 0; x < cols; ++x)
@@ -284,11 +298,13 @@ cv::Mat ImageProcessor::rotate(const cv::Mat &src, double angle)
 
             if (newX >= 0 && newX < cols && newY >= 0 && newY < rows)
             {
+                // Remplir avec les valeurs de l'image source si dans les limites
                 dst.at<cv::Vec3b>(y, x) = src.at<cv::Vec3b>(newY, newX);
             }
             else
             {
-                dst.at<cv::Vec3b>(y, x) = cv::Vec3b(0, 0, 0); // Fill with black if out of bounds
+                // Remplir avec du noir si hors limites
+                dst.at<cv::Vec3b>(y, x) = cv::Vec3b(0, 0, 0);
             }
         }
     }
@@ -296,41 +312,14 @@ cv::Mat ImageProcessor::rotate(const cv::Mat &src, double angle)
     return dst;
 }
 
-// Translation without using OpenCV functions
-cv::Mat ImageProcessor::translate(const cv::Mat &src, int tx, int ty)
-{
-    int rows = src.rows;
-    int cols = src.cols;
-    cv::Mat dst(rows, cols, src.type());
-
-    for (int y = 0; y < rows; ++y)
-    {
-        for (int x = 0; x < cols; ++x)
-        {
-            int newX = x + tx;
-            int newY = y + ty;
-
-            if (newX >= 0 && newX < cols && newY >= 0 && newY < rows)
-            {
-                dst.at<cv::Vec3b>(y, x) = src.at<cv::Vec3b>(newY, newX);
-            }
-            else
-            {
-                dst.at<cv::Vec3b>(y, x) = cv::Vec3b(0, 0, 0); // Fill with black if out of bounds
-            }
-        }
-    }
-
-    return dst;
-}
-
-// Flip without using OpenCV functions
+// Flip
 cv::Mat ImageProcessor::flip(const cv::Mat &src, int flipCode)
 {
     int rows = src.rows;
     int cols = src.cols;
     cv::Mat dst(rows, cols, src.type());
 
+    // Appliquer le flip
     for (int y = 0; y < rows; ++y)
     {
         for (int x = 0; x < cols; ++x)
@@ -346,12 +335,13 @@ cv::Mat ImageProcessor::flip(const cv::Mat &src, int flipCode)
             {
                 newX = cols - x - 1;
             }
-            else if (flipCode == -1) // Both axes flip
+            else if (flipCode == -1) // flip horizontal et vertical
             {
                 newX = cols - x - 1;
                 newY = rows - y - 1;
             }
 
+            // Remplir avec les valeurs de l'image source
             dst.at<cv::Vec3b>(y, x) = src.at<cv::Vec3b>(newY, newX);
         }
     }
