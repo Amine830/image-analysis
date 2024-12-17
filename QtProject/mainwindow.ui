@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>No image loaded</string>
+     <string>Vueillez charger une image</string>
     </property>
    </widget>
    <widget class="QLabel" name="imageLabelText">
@@ -37,7 +37,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Original Image</string>
+     <string>Image courante</string>
     </property>
    </widget>
    <widget class="QLabel" name="histLabel">
@@ -50,7 +50,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>No image loaded</string>
+     <string>Vueillez charger une image</string>
     </property>
    </widget>
    <widget class="QLabel" name="histLabelText">
@@ -76,7 +76,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>No image loaded</string>
+     <string>Vueillez charger une image</string>
     </property>
    </widget>
    <widget class="QLabel" name="cumHistLabelText">
@@ -89,7 +89,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Cumulative Histogram</string>
+     <string>Histogram cumulé</string>
     </property>
    </widget>
    <widget class="QPushButton" name="loadButton">
