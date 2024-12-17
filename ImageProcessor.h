@@ -14,7 +14,7 @@
 /*  
     *  Classe pour le traitement d'images
     */
-*/
+
 class ImageProcessor {
 public:
     using FilterFunction = std::function<cv::Mat(const cv::Mat&)>;

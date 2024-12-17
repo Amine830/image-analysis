@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1100</width>
+    <height>692</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="imageLabel">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>33</y>
+      <width>661</width>
+      <height>461</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>No image loaded</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="imageLabelText">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>13</y>
+      <width>200</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Original Image</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="histLabel">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>33</y>
+      <width>400</width>
+      <height>200</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>No image loaded</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="histLabelText">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>13</y>
+      <width>200</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Histogram</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="cumHistLabel">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>283</y>
+      <width>400</width>
+      <height>210</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>No image loaded</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="cumHistLabelText">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>263</y>
+      <width>200</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Cumulative Histogram</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="loadButton">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>511</y>
+      <width>130</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Load Image</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="saveButton">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>577</y>
+      <width>130</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Save Image</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="medianFilterButton">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>511</y>
+      <width>100</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Median Filter</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="gaussianBlurButton">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>511</y>
+      <width>100</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Gaussian Blur</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="sobelFilterButton">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>511</y>
+      <width>100</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Sobel Filter</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="meanFilterButton">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>511</y>
+      <width>100</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Mean Filter</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="zoomButton">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>577</y>
+      <width>100</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Zoom</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="reduceButton">
+    <property name="geometry">
+     <rect>
+      <x>341</x>
+      <y>577</y>
+      <width>100</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Reduce</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rotateButton">
+    <property name="geometry">
+     <rect>
+      <x>461</x>
+      <y>577</y>
+      <width>100</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Rotate</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="flipButton">
+    <property name="geometry">
+     <rect>
+      <x>581</x>
+      <y>577</y>
+      <width>100</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Flip</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="compressButton">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>577</y>
+      <width>100</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Compress</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="equalizeButton">
+    <property name="geometry">
+     <rect>
+      <x>701</x>
+      <y>511</y>
+      <width>100</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Equalize</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="stretchButton">
+    <property name="geometry">
+     <rect>
+      <x>821</x>
+      <y>511</y>
+      <width>100</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Stretch</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1100</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionLoad_Image"/>
+    <addaction name="actionSave_Image"/>
+   </widget>
+   <widget class="QMenu" name="menuFilters">
+    <property name="title">
+     <string>Filters</string>
+    </property>
+    <addaction name="actionApply_Median_Filter"/>
+    <addaction name="actionApply_Gaussian_Blur"/>
+    <addaction name="actionApply_Sobel_Filter"/>
+    <addaction name="actionApply_Mean_Filter"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuFilters"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionLoad_Image">
+   <property name="text">
+    <string>Load Image</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionSave_Image">
+   <property name="text">
+    <string>Save Image</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionApply_Median_Filter">
+   <property name="text">
+    <string>Apply Median Filter</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionApply_Gaussian_Blur">
+   <property name="text">
+    <string>Apply Gaussian Blur</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionApply_Sobel_Filter">
+   <property name="text">
+    <string>Apply Sobel Filter</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionApply_Mean_Filter">
+   <property name="text">
+    <string>Apply Mean Filter</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

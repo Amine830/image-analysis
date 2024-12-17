@@ -1,27 +1,27 @@
+# === Ignorer les fichiers et dossiers générés ===
+# Dossier d'exécution ou de build
+/build/
 ./exec
 
 # Fichiers et répertoires générés par CMake
-/build/
 /CMakeFiles/
 /CMakeCache.txt
 /cmake_install.cmake
 /Makefile
 
-# Fichiers de configuration de l'éditeur
+# === Ignorer les fichiers liés à l'éditeur ===
 /.vscode/
 /.idea/
-/*.swp
+*.swp
 
-# Fichiers de log
+# === Fichiers journaux et temporaires ===
 *.log
-
-# Fichiers temporaires
 *.tmp
 *.bak
 *.old
 *.orig
 
-
+# === Fichiers intermédiaires de compilation ===
 # Prerequisites
 *.d
 
@@ -54,3 +54,11 @@
 *.exe
 *.out
 *.app
+
+# === Inclure explicitement les fichiers nécessaires ===
+!*.cpp
+!*.h
+!*.ui
+!CMakeLists.txt
+!build_terminal.sh
+!build_gui.sh
