@@ -80,3 +80,12 @@ CMakeLists.txt.user*
 .rcc/
 .uic/
 /build*/
+
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+QtProject_autogen/
+build/
+QtProject (exécutable généré)
+CMakeLists.txt.user
