@@ -2,9 +2,10 @@
 
 Ce projet est une application de traitement d'images développée avec OpenCV et Qt, offrant à la fois une interface en ligne de commande (CLI) et une interface graphique (GUI). Il permet d'appliquer divers filtres et transformations à des images.
 
-Le projet a pour objectif de recoder toutes les fonctions de filtrage et de transformations géométriques afin de comprendre en profondeur leurs mécanismes et leur implémentation algorithmique.
+Le projet a pour objectif de ***recoder*** toutes les fonctions de filtrage et de transformations géométriques afin de comprendre en profondeur leurs mécanismes et leur implémentation algorithmique.
 
 ## Table des matières
+
 - Fonctionnalités
 - Prérequis
 - Installation
@@ -18,18 +19,21 @@ Le projet a pour objectif de recoder toutes les fonctions de filtrage et de tran
 ## Fonctionnalités
 
 ### Filtres disponibles
+
 - Filtre médian
 - Filtre gaussien
 - Filtre de Sobel (détection de contours)
 - Filtre moyenneur
 
 ### Opérations sur les histogrammes
+
 - Affichage de l'histogramme
 - Affichage de l'histogramme cumulé
 - Égalisation d'histogramme
 - Étirement d'histogramme
 
 ### Transformations géométriques
+
 - Zoom / Agrandissement
 - Réduction
 - Rotation
@@ -57,6 +61,7 @@ cd image-analysis
 ```bash
 chmod +x build_cli.sh build_gui.sh
 ```
+
 ## Utilisation
 
 ### Version CLI
@@ -68,11 +73,16 @@ Pour exécuter l'application en ligne de commande :
 ```
 
 L'interface CLI vous permettra de :
+
 1. Charger une image depuis votre système de fichiers
 2. Appliquer différents filtres et transformations
 3. Enregistrer l'image modifiée
 
 L'application affichera les histogrammes à chaque étape du traitement.
+
+- Captures d'écran de l'interface console (CLI) :
+![cli1](img/Screenshots/cli1.png)
+![cli2](img/Screenshots/cli2.png)
 
 ### Version GUI
 
@@ -83,15 +93,21 @@ Pour exécuter l'application avec l'interface graphique :
 ```
 
 L'interface graphique offre une expérience plus intuitive avec des boutons pour chaque opération disponible :
+
 - Chargement et sauvegarde d'images
 - Boutons dédiés pour chaque type de filtre et transformation
 - Affichage en temps réel de l'image et des histogrammes
+
+- Captures d'écran de l'interface graphique (GUI) :
+![Capture d'écran GUI](img/Screenshots/Capture%20d’écran%202024-12-17%20212012.png)
+![Capture d'écran GUI](img/Screenshots/Capture%20d’écran%202024-12-17%20211829.png)
+![Capture d'écran GUI](img/Screenshots/Capture%20d’écran%202024-12-17%20211933.png)
 
 ## Structure du projet
 
 Le projet est organisé comme suit :
 
-```
+```tree
 image-analysis/
 ├── build_cli.sh             # Script pour compiler et exécuter la version CLI
 ├── build_gui.sh             # Script pour compiler et exécuter l'interface graphique
@@ -123,6 +139,7 @@ set(CMAKE_PREFIX_PATH "/chemin/vers/qt/6.x.x/gcc_64")
 ```
 
 Par exemple :
+
 ```cmake
 set(CMAKE_PREFIX_PATH "/home/ubuntu/install/qt/6.8.1/gcc_64")
 ```
@@ -142,12 +159,12 @@ cmake -DCMAKE_PREFIX_PATH="/chemin/vers/qt/6.x.x/gcc_64" .
 - **Filtre de Sobel** : Détecte les contours dans l'image
 - **Filtre moyenneur** : Applique un flou simple en calculant la moyenne des pixels adjacents
 
-### Opérations sur les histogrammes
+### Opérations possibles sur les histogrammes
 
 - **Égalisation d'histogramme** : Améliore le contraste en répartissant uniformément les intensités
 - **Étirement d'histogramme** : Améliore le contraste en étirant la plage des valeurs d'intensité
 
-### Transformations géométriques
+### Transformations géométriques possibles
 
 - **Zoom** : Agrandit l'image en utilisant une interpolation
 - **Réduction** : Réduit la taille de l'image 
@@ -158,9 +175,30 @@ cmake -DCMAKE_PREFIX_PATH="/chemin/vers/qt/6.x.x/gcc_64" .
 ## Jeu de données d'images
 
 Le dossier `img/` contient :
+
 - **Donnee1/** et **Donnee2/** : Images de test pour expérimenter les fonctionnalités
-- **Interface graphique/** : Captures d'écran de l'interface utilisateur
-- **results/** : Exemples de résultats de traitements d'images
+- **Screenshots/** : Captures d'écran de l'interface utilisateur
+- **Results/** : Exemples de résultats de traitements d'images
+
+## Resultats
+
+- Egalisation d'histogramme : 
+
+![Résultat de l'application du filtre médian](img/Screenshots/egaliseur.png)
+
+- Etirement d'histogramme :
+
+![Résultat de l'application du filtre gaussien](img/Screenshots/etirement.png)
+
+![Résultat de l'application du filtre de Sobel](img/Screenshots/rer.png)
+
+![Résultat de l'application du filtre moyenneur](img/Screenshots/result.png)
+
+![Résultat de l'application du filtre de Sobel](img/Screenshots/re.png)
+
+![Résultat de l'application du filtre de Sobel](img/Screenshots/luna.png)
+
+D'autres résultats avec des images, histogrammes, filtres et transformations différents sont disponibles.
 
 ## Résolution de problèmes
 
